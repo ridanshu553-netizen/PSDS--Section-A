@@ -1,18 +1,17 @@
 #include <stdio.h>
 
 int main() {
-    int q[10]={10,20,30}, n=3;
+    int a[10]={1,2,3}, n=3, x;
 
-    q[n++]=40;                // Enqueue
-    printf("After enqueue: ");
-    for(int i=0;i<n;i++) printf("%d ",q[i]);
+    a[n++]=4;                 // Push
+    printf("After push: ");
+    for(int i=0;i<n;i++) printf("%d ",a[i]);
 
-    printf("\nDequeued: %d",q[0]);   // Dequeue
-    for(int i=0;i<n-1;i++) q[i]=q[i+1];
-    n--;
+    x=a[--n];                 // Pop
+    printf("\nPopped: %d",x);
 
-    printf("\nAfter dequeue: ");
-    for(int i=0;i<n;i++) printf("%d ",q[i]);
+    printf("\nAfter pop: ");
+    for(int i=0;i<n;i++) printf("%d ",a[i]);
 
     return 0;
 }
