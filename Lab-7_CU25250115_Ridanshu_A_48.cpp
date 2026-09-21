@@ -1,108 +1,72 @@
-// #include <iostream>
-// #include <vector>
-// #include <queue>
-// using namespace std;
 
-// // Max Heap
-// void heapify(vector<int>& a, int n, int i) {
-//     int largest = i;
-//     int l = 2 * i + 1;
-//     int r = 2 * i + 2;
+// #include <stdio.h>
 
-//     if (l < n && a[l] > a[largest])
-//         largest = l;
-
-//     if (r < n && a[r] > a[largest])
-//         largest = r;
-
-//     if (largest != i) {
-//         swap(a[i], a[largest]);
-//         heapify(a, n, largest);
+// void heap(int a[],int n,int i){
+//     int m=i,l=2*i+1,r=2*i+2,t;
+//     if(l<n&&a[l]>a[m])m=l;
+//     if(r<n&&a[r]>a[m])m=r;
+//     if(m!=i){
+//         t=a[i];a[i]=a[m];a[m]=t;
+//         heap(a,n,m);
 //     }
 // }
 
-// // Heap Sort
-// void heapSort(vector<int>& a) {
-//     int n = a.size();
+// int main(){
+//     int a[100],n,i,t;
+//     scanf("%d",&n);
+//     for(i=0;i<n;i++)scanf("%d",&a[i]);
 
-//     // Build max heap
-//     for (int i = n / 2 - 1; i >= 0; i--)
-//         heapify(a, n, i);
+//     for(i=n/2-1;i>=0;i--)heap(a,n,i);
 
-//     // Extract elements
-//     for (int i = n - 1; i > 0; i--) {
-//         swap(a[0], a[i]);
-//         heapify(a, i, 0);
+//     printf("Max Heap: ");
+//     for(i=0;i<n;i++)printf("%d ",a[i]);
+
+//     for(i=n-1;i>0;i--){
+//         t=a[0];a[0]=a[i];a[i]=t;
+//         heap(a,i,0);
 //     }
+
+//     printf("\nHeap Sort: ");
+//     for(i=0;i<n;i++)printf("%d ",a[i]);
+// }
+
+
+// #include <stdio.h>
+// #include <stdlib.h>
+
+// int cmp(const void *a, const void *b) {
+//     return *(int*)a - *(int*)b;
 // }
 
 // int main() {
-//     vector<int> a = {4, 10, 3, 5, 1};
-
-//     // Priority Queue using Max Heap
-//     priority_queue<int> pq;
-
-//     for (int x : a)
-//         pq.push(x);
-
-//     cout << "Priority Queue: ";
-//     while (!pq.empty()) {
-//         cout << pq.top() << " ";
-//         pq.pop();
-//     }
-
-//     // Heap Sort
-//     heapSort(a);
-
-//     cout << "\nHeap Sorted Array: ";
-//     for (int x : a)
-//         cout << x << " ";
-
-//     return 0;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-// #include <iostream>
-// #include <vector>
-// #include <algorithm>
-// using namespace std;
-
-// int main() {
-//     vector<int> a = {4, 2, 7, 1};
-
-//     sort(a.begin(), a.end());
-
-//     vector<int> b;
-//     int l = 0, r = a.size() - 1;
-
-//     while (l <= r) {
-//         if (l <= r)
-//             b.push_back(a[l++]);
-
-//         if (l <= r)
-//             b.push_back(a[r--]);
-//     }
-
+//     int a[100000], b[100000];
+//     int n, l = 0, r, k = 0, i;
 //     long long sum = 0;
 
-//     for (int i = 1; i < b.size(); i++)
-//         sum += abs(b[i] - b[i - 1]);
+//     scanf("%d", &n);
 
-//     cout << "Rearranged Array: ";
-//     for (int x : b)
-//         cout << x << " ";
+//     for(i = 0; i < n; i++)
+//         scanf("%d", &a[i]);
 
-//     cout << "\nMaximum Sum: " << sum;
+//     r = n - 1;
+
+//     qsort(a, n, sizeof(int), cmp);
+
+//     while(l <= r) {
+//         if(k % 2 == 0)
+//             b[k++] = a[l++];
+//         else
+//             b[k++] = a[r--];
+//     }
+
+//     for(i = 0; i < n - 1; i++)
+//         sum += abs(b[i] - b[i + 1]);
+
+//     printf("Arrangement: ");
+//     for(i = 0; i < n; i++)
+//         printf("%d ", b[i]);
+
+//     printf("\nSum = %lld", sum);
 
 //     return 0;
 // }
@@ -110,34 +74,24 @@
 
 
 
+#include <stdio.h>
 
-#include <iostream>
-#include <vector>
-#include <climits>
-using namespace std;
+int main(){
+    int a[100000],n,target,l=0,min=1000000000;
+    long long sum=0;
 
-int main() {
-    vector<int> a = {2, 1, 5, 2, 3, 2};
-    int target = 7;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)scanf("%d",&a[i]);
+    scanf("%d",&target);
 
-    int left = 0;
-    long long sum = 0;
-    int ans = INT_MAX;
+    for(int r=0;r<n;r++){
+        sum+=a[r];
 
-    for (int right = 0; right < a.size(); right++) {
-        sum += a[right];
-
-        while (sum > target) {
-            ans = min(ans, right - left + 1);
-            sum -= a[left];
-            left++;
+        while(sum>target){
+            if(r-l+1<min)min=r-l+1;
+            sum-=a[l++];
         }
     }
 
-    if (ans == INT_MAX)
-        cout << -1;
-    else
-        cout << "Smallest Subarray Length: " << ans;
-
-    return 0;
+    printf("%d",min==1000000000?-1:min);
 }
