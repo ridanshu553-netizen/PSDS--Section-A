@@ -1,7 +1,7 @@
 
 // #include <stdio.h>
 
-// void heap(int a[],int n,int i){
+// void heap(int a[],int n,int i){ 
 //     int m=i,l=2*i+1,r=2*i+2,t;
 //     if(l<n&&a[l]>a[m])m=l;
 //     if(r<n&&a[r]>a[m])m=r;
@@ -31,67 +31,67 @@
 // }
 
 
-// #include <stdio.h>
-// #include <stdlib.h>
-
-// int cmp(const void *a, const void *b) {
-//     return *(int*)a - *(int*)b;
-// }
-
-// int main() {
-//     int a[100000], b[100000];
-//     int n, l = 0, r, k = 0, i;
-//     long long sum = 0;
-
-//     scanf("%d", &n);
-
-//     for(i = 0; i < n; i++)
-//         scanf("%d", &a[i]);
-
-//     r = n - 1;
-
-//     qsort(a, n, sizeof(int), cmp);
-
-//     while(l <= r) {
-//         if(k % 2 == 0)
-//             b[k++] = a[l++];
-//         else
-//             b[k++] = a[r--];
-//     }
-
-//     for(i = 0; i < n - 1; i++)
-//         sum += abs(b[i] - b[i + 1]);
-
-//     printf("Arrangement: ");
-//     for(i = 0; i < n; i++)
-//         printf("%d ", b[i]);
-
-//     printf("\nSum = %lld", sum);
-
-//     return 0;
-// }
-
-
-
-
 #include <stdio.h>
+#include <stdlib.h>
 
-int main(){
-    int a[100000],n,target,l=0,min=1000000000;
-    long long sum=0;
+int cmp(const void *a, const void *b) {
+    return *(int*)a - *(int*)b;
+}
 
-    scanf("%d",&n);
-    for(int i=0;i<n;i++)scanf("%d",&a[i]);
-    scanf("%d",&target);
+int main() {
+    int a[100000], b[100000];
+    int n, l = 0, r, k = 0, i;
+    long long sum = 0;
 
-    for(int r=0;r<n;r++){
-        sum+=a[r];
+    scanf("%d", &n);
 
-        while(sum>target){
-            if(r-l+1<min)min=r-l+1;
-            sum-=a[l++];
-        }
+    for(i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    r = n - 1;
+
+    qsort(a, n, sizeof(int), cmp);
+
+    while(l <= r) {
+        if(k % 2 == 0)
+            b[k++] = a[l++];
+        else
+            b[k++] = a[r--];
     }
 
-    printf("%d",min==1000000000?-1:min);
+    for(i = 0; i < n - 1; i++)
+        sum += abs(b[i] - b[i + 1]);
+
+    printf("Arrangement: ");
+    for(i = 0; i < n; i++)
+        printf("%d ", b[i]);
+
+    printf("\nSum = %lld", sum);
+
+    return 0;
 }
+
+
+
+
+// #include <stdio.h>
+
+// int main(){
+//     int a[100000],n,target,l=0,min=1000000000;
+//     long long sum=0;
+
+//     scanf("%d",&n);
+//     for(int i=0;i<n;i++)scanf("%d",&a[i]);
+//     scanf("%d",&target);
+
+//     for(int r=0;r<n;r++){
+//         sum+=a[r];
+
+//         while(sum>target){
+//             if(r-l+1<min)min=r-l+1;
+//             sum-=a[l++];
+//         }
+//     }
+
+//     printf("%d",min==1000000000?-1:min);
+// }
