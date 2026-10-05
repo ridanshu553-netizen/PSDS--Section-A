@@ -2,7 +2,7 @@
 //Else, print -1 if it is not possible to do so.
 #include <stdio.h>
 
-long long solve(int N, long long A[]) {
+long long solve(int N, long long A[]) { 
     long long sum = 0;
     long long positive = 0;
     long long negative = 0;
@@ -44,3 +44,9 @@ int main() {
 
     return 0;
 }
+
+// 2
+// 1
+// -2
+// 2
+// 1 -1
