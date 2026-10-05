@@ -1,3 +1,4 @@
+//Return the number of special pairs to assist Alice in uncovering the hidden secret.
 #include <stdio.h>
 
 int digitSum(int n) {

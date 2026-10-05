@@ -1,3 +1,4 @@
+//Given an array of N integers, find the maximum sum of any contiguous subarray of size K.
 // #include <stdio.h>
 
 // int main() {
@@ -23,6 +24,7 @@
 //     return 0;
 // }
 
+//Given a string S, find the length of the longest substring without repeating characters.
 // #include <stdio.h>
 
 // int main() {
@@ -47,6 +49,8 @@
 //     return 0;
 // }
 
+//You are given a weighted, undirected graph with N nodes and M edges. Find the shortest path from node 1 to node N such 
+//that the path uses at most K edges. If no such path exists, output -1.
 #include <stdio.h>
 
 #define INF 1000000000

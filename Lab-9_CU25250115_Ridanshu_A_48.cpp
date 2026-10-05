@@ -1,3 +1,5 @@
+//Determine the minimum number of operations required to make all the elements of A equal to zero.
+//Else, print -1 if it is not possible to do so.
 #include <stdio.h>
 
 long long solve(int N, long long A[]) {
